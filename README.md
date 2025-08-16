@@ -31,3 +31,4 @@ Minimal scaffold for training, exporting, and serving plant disease detection mo
 - PyTorch and TensorFlow are available as optional dependency groups.
 - Install specific frameworks: `poetry install --with pytorch` or `poetry install --with tensorflow`
 - Implement actual training in `src/model/train.py` and inference in `src/model/inference.py`.
+- Test
