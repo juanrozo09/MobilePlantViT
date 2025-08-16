@@ -1,23 +1,28 @@
+# streamlit_app/app.py
 import streamlit as st
+import numpy as np
 from PIL import Image
-from pathlib import Path
+import tensorflow as tf
 
-from src.model.inference import predict
+# Load model
+# model = tf.keras.models.load_model("mobile_integration/tflite_model.tflite", compile=False)  # or your .keras if needed
 
-st.set_page_config(page_title="AI Crop Disease Detector", layout="centered")
+# For .keras
+model = tf.keras.models.load_model("src/model/best_model_tuned.keras")
 
-st.title("AI Crop Disease Detector")
-st.write("Upload a leaf image to get a prediction (placeholder model)")
+# Load class names from the model
+class_names = model.class_names
 
-uploaded = st.file_uploader("Choose an image", type=["jpg", "jpeg", "png"]) 
-if uploaded is not None:
-    image = Image.open(uploaded).convert("RGB")
-    st.image(image, caption="Uploaded", use_column_width=True)
-    with st.spinner("Predicting..."):
-        result = predict(image)
-    st.json(result)
+# Streamlit UI
+st.title("🌿 AI Crop Disease Detector")
+uploaded_file = st.file_uploader("Upload a crop leaf image", type=["jpg", "png"])
 
-# Optional: show where to place exported models
-models_dir = Path("mobile_integration")
-models_dir.mkdir(parents=True, exist_ok=True)
-st.caption(f"Mobile model artifacts stored in: {models_dir.resolve()}")
+if uploaded_file:
+    image = Image.open(uploaded_file).resize((160, 160))
+    img_array = np.expand_dims(np.array(image) / 255.0, axis=0)
+
+    prediction = model.predict(img_array)
+    pred_class = class_names[np.argmax(prediction)]
+    confidence = np.max(prediction) * 100
+
+    st.success(f"Prediction: {pred_class} ({confidence:.2f}%)")
