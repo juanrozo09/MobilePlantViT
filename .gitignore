@@ -1,0 +1,52 @@
+# Poetry
+poetry.lock
+dist/
+*.egg-info/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+*.egg
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Model files (large)
+*.tflite
+*.onnx
+*.pt
+*.pth
+*.h5
+*.pb
+
+# Data
+data/raw/
+data/processed/
+*.csv
+*.json
+*.parquet
+
+# Logs
+*.log
+logs/
+tensorboard_logs/
