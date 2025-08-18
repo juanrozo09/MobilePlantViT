@@ -8,7 +8,12 @@ import tensorflow as tf
 # model = tf.keras.models.load_model("mobile_integration/tflite_model.tflite", compile=False)  # or your .keras if needed
 
 # For .keras
-model = tf.keras.models.load_model("model/best_model_tuned.keras", compile=True)
+model = tf.keras.models.load_model(
+    "model/best_model.keras", 
+    compile=True,
+    custom_objects=None,
+    safe_mode=True
+    )
 
 # Load class names from the model
 class_names = model.class_names
