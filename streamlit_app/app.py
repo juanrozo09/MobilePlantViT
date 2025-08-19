@@ -5,7 +5,8 @@ import streamlit as st
 from PIL import Image
 import tensorflow as tf
 from tensorflow.keras import layers as L
-from tensorflow.keras.applications.mobilenet_v3 import MobileNetV3Small, preprocess_input
+from tensorflow.keras.applications.mobilenet_v3 import preprocess_input
+from tensorflow.keras.applications import MobileNetV3Small
 
 # --------------------------
 # Best hyperparameters (fixed)
