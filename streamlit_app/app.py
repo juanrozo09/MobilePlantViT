@@ -15,7 +15,7 @@ BEST = {
     "use_data_augmentation": False,
     "dense_units": 256,
     "dropout": 0.1,
-    "activation": "swish",           # -> use glorot_uniform kernel init
+    "activation": "swish"
 }
 
 # --------------------------
