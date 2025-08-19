@@ -36,14 +36,14 @@ Thumbs.db
 *.onnx
 *.pt
 *.pth
-*.h5
+# *.h5
 *.pb
 
 # Data
 data/raw/
 data/processed/
 *.csv
-*.json
+# *.json
 *.parquet
 
 # Logs
