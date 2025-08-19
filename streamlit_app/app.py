@@ -86,11 +86,7 @@ def preprocess_image_pil(pil_img: Image.Image, img_size=IMG_SIZE) -> np.ndarray:
 
 
 @st.cache_resource(show_spinner=True)
-def load_model_and_labels():
-    # Debug: show the paths being used
-    st.info(f"🔍 Looking for class names at: {CLASS_NAMES_PATH}")
-    st.info(f"🔍 Looking for weights at: {WEIGHTS_PATH}")
-    
+def load_model_and_labels():    
     class_names = load_class_names(CLASS_NAMES_PATH)
     if class_names is None:
         # You can still run, but labels will be generic
@@ -124,7 +120,7 @@ uploaded_file = st.file_uploader("Upload a crop leaf image", type=["jpg", "jpeg"
 if uploaded_file:
     try:
         image = Image.open(uploaded_file)
-        st.image(image, caption="Uploaded Image", use_column_width=True)
+        st.image(image, caption="Uploaded Image", use_container_width=True)
 
         x = preprocess_image_pil(image, IMG_SIZE)
         pred = model.predict(x, verbose=0)[0]
