@@ -22,8 +22,10 @@ BEST = {
 # Paths & constants
 # --------------------------
 IMG_SIZE = (160, 160)
-WEIGHTS_PATH = "model/best_model_tuned.weights.h5"
-CLASS_NAMES_PATH = "model/class_names.json"
+# Get the directory where this script is located
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+WEIGHTS_PATH = os.path.join(SCRIPT_DIR, "model", "best_model_tuned.weights.h5")
+CLASS_NAMES_PATH = os.path.join(SCRIPT_DIR, "model", "class_names.json")
 
 
 # --------------------------
@@ -85,6 +87,10 @@ def preprocess_image_pil(pil_img: Image.Image, img_size=IMG_SIZE) -> np.ndarray:
 
 @st.cache_resource(show_spinner=True)
 def load_model_and_labels():
+    # Debug: show the paths being used
+    st.info(f"🔍 Looking for class names at: {CLASS_NAMES_PATH}")
+    st.info(f"🔍 Looking for weights at: {WEIGHTS_PATH}")
+    
     class_names = load_class_names(CLASS_NAMES_PATH)
     if class_names is None:
         # You can still run, but labels will be generic
