@@ -129,12 +129,18 @@ if uploaded_file:
 
         # label
         name = class_names[idx] if class_names and idx < len(class_names) else f"Class {idx}"
-        st.success(f"🔍 Prediction: **{name}**")
+        leaf_name, leaf_disease = name.split("__")
+        leaf_name = leaf_name.replace("_", " ")
+        leaf_disease = leaf_disease.replace("_", " ")
+        st.success(f"🔍 Prediction: **{leaf_name} - {leaf_disease}**")
         st.info(f"📊 Confidence: **{conf:.2f}%**")
 
         st.write("**All Class Probabilities:**")
         for i, p in enumerate(pred):
             cname = class_names[i] if class_names and i < len(class_names) else f"Class {i}"
-            st.write(f"- {cname}: {p*100:.2f}%")
+            leaf_name, leaf_disease = cname.split("__")
+            leaf_name = leaf_name.replace("_", " ")
+            leaf_disease = leaf_disease.replace("_", " ")
+            st.write(f"- {leaf_name} - {leaf_disease}: {p*100:.2f}%")
     except Exception as e:
         st.error(f"❌ Error processing image: {e}")
