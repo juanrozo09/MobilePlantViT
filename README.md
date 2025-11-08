@@ -52,6 +52,8 @@ MobilePlantViT/
 │   └── model/
 │       ├── best_model_tuned.weights.h5  # Saved model weights
 │       └── class_names.json             # Class labels
+├── docs/
+│   └── images/                          # Demo screenshots
 ├── pyproject.toml                       # Dependencies
 ├── poetry.lock                          # Locked dependency versions
 └── README.md                            # This file
@@ -80,6 +82,49 @@ MobilePlantViT/
    ```bash
    streamlit run streamlit_app/app.py
    ```
+
+## 🎬 Demo
+
+The Streamlit application provides an intuitive interface for crop disease detection. Here are some examples of the app in action:
+
+### Upload Interface
+
+The app features a clean, user-friendly interface for uploading crop leaf images:
+
+![Upload Interface](docs/images/upload_interface.png)
+
+*The upload interface allows users to drag and drop or browse for images of crop leaves. The model status indicator confirms when the AI model is loaded and ready for predictions.*
+
+### Healthy Leaf Detection
+
+When a healthy leaf is uploaded, the model correctly identifies it:
+
+![Healthy Corn Leaf](docs/images/healthy_corn_leaf.png)
+
+**Example Result:**
+- **Prediction**: Corn - healthy
+- **Confidence**: 55.98%
+
+*The model successfully identifies healthy corn leaves with appropriate confidence scores.*
+
+### Diseased Leaf Detection
+
+The model excels at detecting various plant diseases:
+
+![Diseased Tomato Leaf](docs/images/diseased_tomato_leaf.png)
+
+**Example Result:**
+- **Prediction**: Tomato - Late blight
+- **Confidence**: 99.38%
+
+*The model accurately detects late blight disease on tomato leaves with high confidence, enabling early intervention for farmers.*
+
+### Features
+
+- **Real-time predictions** - Instant disease classification upon image upload
+- **Confidence scores** - Transparent probability scores for each prediction
+- **All class probabilities** - View probabilities for all possible disease classifications
+- **Multiple crop support** - Detects diseases across various crop types (corn, tomato, apple, etc.)
 
 ### Training the Model
 
