@@ -150,6 +150,18 @@ The model is optimized for mobile deployment:
 - Model architecture is optimized for mobile deployment with minimal latency
 - All training code is in the Jupyter notebook for reproducibility
 
+## 📚 References
+
+1. MIT News – ["Reducing pesticide use while increasing effectiveness"](https://news.mit.edu/2024/reducing-pesticide-use-while-increasing-effectiveness-agzen-0312)
+
+2. DevelopmentAid – ["Smart agriculture in Latin America"](https://www.developmentaid.org/news-stream/post/184774/smart-agriculture-in-latin-america)
+
+3. Google Public Policy – ["How Wadhwani AI is helping farmers reduce food waste with AI"](https://publicpolicy.google/article/wadhwaniai-ai-farmers-agriculture-food-waste/)
+
+4. EurekAlert – ["Machine learning helps Colombian farmers improve maize yields"](https://www.eurekalert.org/news-releases/825095)
+
+5. Tufts Digital Planet – ["Getting Real About AI for the Bottom of the Pyramid"](https://digitalplanet.tufts.edu/getting-real-about-ai-for-the-bottom-of-the-pyramid/)
+
 ## 👤 Author
 
 Juan Esteban Rozo Urbina | Bogota, Colombia 🇨🇴
