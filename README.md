@@ -1,16 +1,16 @@
 # 🌿 MobilePlantViT - AI Crop Disease Detector
 
-AI-powered crop disease detection system designed for smallholder farmers in Latin America. This lightweight deep learning solution uses MobileNetV3Small to detect plant diseases from smartphone images, enabling real-time, offline diagnostics even in low-connectivity environments.
+AI-powered crop disease detection system designed for smallholder farmers in Latin America. This deep learning solution uses MobileNetV3Small to detect plant diseases from images, enabling accurate diagnostics for agricultural applications.
 
 ## 🎯 Project Overview
 
 Agriculture remains the backbone of rural economies, especially in the Global South where it employs over 65% of the workforce in some developing regions. Farmers face unpredictable losses due to pests, disease, and climate volatility, contributing to food insecurity affecting an estimated 2.3 billion people globally.
 
 This project addresses these challenges by providing:
-- **Offline-capable diagnostics** - Works without internet connectivity
-- **Real-time predictions** - Fast inference optimized for mobile devices
 - **High accuracy** - 97.13% test accuracy on PlantVillage dataset
-- **Scalable deployment** - TFLite format for Android and edge devices
+- **Easy model management** - Simple load and save functionality for trained models
+- **Streamlit interface** - User-friendly web interface for predictions
+- **Reproducible training** - Complete training pipeline in Jupyter notebook
 
 ## 📊 Model Performance
 
@@ -18,7 +18,7 @@ This project addresses these challenges by providing:
 - **Test Loss**: 0.102
 - **Architecture**: MobileNetV3Small (transfer learning from ImageNet)
 - **Dataset**: PlantVillage (multiple crop diseases)
-- **Input Size**: 160×160 pixels (optimized for mobile)
+- **Input Size**: 160×160 pixels
 
 ## 🏗️ Architecture
 
@@ -46,15 +46,15 @@ The model uses a transfer learning approach with MobileNetV3Small as the backbon
 ```
 MobilePlantViT/
 ├── notebooks/
-│   └── 01_model_training.ipynb    # Complete training pipeline
+│   └── 01_model_training.ipynb          # Complete training pipeline
 ├── streamlit_app/
-│   ├── app.py                      # Streamlit inference interface
+│   ├── app.py                           # Streamlit inference interface
 │   └── model/
-│       ├── best_model_tuned.weights.h5
-│       └── class_names.json
-├── mobile_integration/
-│   └── tflite_model.tflite         # Mobile-optimized model
-└── pyproject.toml                  # Dependencies
+│       ├── best_model_tuned.weights.h5  # Saved model weights
+│       └── class_names.json             # Class labels
+├── pyproject.toml                       # Dependencies
+├── poetry.lock                          # Locked dependency versions
+└── README.md                            # This file
 ```
 
 ## 🚀 Quickstart
@@ -102,7 +102,12 @@ The complete training pipeline is in `notebooks/01_model_training.ipynb`. The no
    - Searches over architecture and training hyperparameters
    - 10 trials to find optimal configuration
 
-4. **Evaluation**:
+4. **Model Saving**:
+   - Save trained model weights (`.h5` format)
+   - Save full model (`.keras` format)
+   - Export class names for inference
+
+5. **Evaluation**:
    - Test set evaluation
    - Confusion matrix visualization
    - Classification report (precision, recall, F1-score)
@@ -126,29 +131,37 @@ The complete training pipeline is in `notebooks/01_model_training.ipynb`. The no
 - **Format**: RGB images with disease labels
 - **Preprocessing**: MobileNetV3-specific normalization
 
-## 📱 Deployment
+## 💾 Model Loading and Saving
 
-The model is optimized for mobile deployment:
+The project provides straightforward model management:
 
-- **TFLite Format**: Quantized model in `mobile_integration/tflite_model.tflite`
-- **Streamlit App**: Web-based interface for quick testing
-- **Offline Capable**: No internet required for inference
+- **Saving Models**: Models are saved in the notebook using:
+  - `model.save_weights("best_model_tuned.weights.h5")` - Saves weights only
+  - `model.save("best_model_tuned.keras")` - Saves full model (architecture + weights)
+  
+- **Loading Models**: The Streamlit app loads saved weights:
+  - Loads weights from `streamlit_app/model/best_model_tuned.weights.h5`
+  - Rebuilds model architecture to match training configuration
+  - Loads class names from `streamlit_app/model/class_names.json`
+
+- **Streamlit App**: Web-based interface for quick testing and inference
 
 ## 🔮 Future Work
 
 - Fine-tune on region-specific diseases and crops for Latin America
 - Incorporate active learning to allow users to submit new disease samples
 - Add local language advisory and treatment suggestions
-- Deploy fully on-device via Android app
 - Integrate into field extension workflows
 - Support for additional crop types and diseases
+- Add model versioning and experiment tracking
 
 ## 📝 Notes
 
 - Model training requires GPU for reasonable training times (~1 hour for hyperparameter tuning)
 - The Streamlit app loads the trained model weights for inference
-- Model architecture is optimized for mobile deployment with minimal latency
+- Models are saved in standard Keras formats (`.h5` for weights, `.keras` for full model)
 - All training code is in the Jupyter notebook for reproducibility
+- Ensure model architecture matches when loading weights (defined in `streamlit_app/app.py`)
 
 ## 📚 References
 
